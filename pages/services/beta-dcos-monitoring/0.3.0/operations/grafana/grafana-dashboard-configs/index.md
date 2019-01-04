@@ -3,14 +3,16 @@ layout: layout.pug
 navigationTitle: Grafana Dashboard Configurations
 title: Grafana Dashboard Configurations
 menuWeight: 10
-excerpt: Automatically loading Grafana dashboard configurations.
+excerpt: Automatically loading Grafana dashboard configurations
+render: mustache
+model: /services/beta-dcos-monitoring/data.yml
 ---
+#include /services/include/beta-software-warning.tmpl
 
-# Automatically loading Grafana dashboard configurations
 
-The DC/OS Monitoring service can be configured to automatically load Grafana dashboard configurations from a Git repository.
+The {{ model.techName }} service can be configured to automatically load Grafana dashboard configurations from a Git repository.
 
-## Save Grafana dashboard configurations
+# Save Grafana dashboard configurations
 
 You should save your Grafana dashboard configurations (JSON format) in a Git repository.
 Assume that the repository is `https://github.com/company/dashboard-configs`.
@@ -98,12 +100,12 @@ If you want to fetch the Grafana dashboard configurations from another branch in
 
 ```
 
-## Install DC/OS Monitoring service
+## Install {{ model.techName }} service
 
 Then, install the service:
 
 ```bash
-dcos package install dcos-monitoring --options=options.json
+dcos package install {{ model.serviceName }} --options=options.json
 ```
 
 The Grafana dashboards defined in the repository will be automatically loaded when the service finishes deploying.
@@ -114,5 +116,5 @@ You can go to the Grafana UI to verify.
 It is possible to trigger a reload of the Grafana dashboard configurations after the service is installed.
 
 ```bash
-dcos dcos-monitoring plan start reload-grafana-dashboard-configs
+dcos {{ model.serviceName }} plan start reload-grafana-dashboard-configs
 ```

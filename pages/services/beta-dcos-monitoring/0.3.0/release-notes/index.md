@@ -2,9 +2,13 @@
 layout: layout.pug
 navigationTitle: Release Notes
 title: Release Notes
-menuWeight: 90
-excerpt: Discover the new features, updates, and known limitations in this release of the Beta DC/OS Monitoring Service.
+menuWeight: 10
+excerpt: New features, updates, and known limitations in this release of the Beta DC/OS Monitoring Service
+render: mustache
+model: /services/beta-dcos-monitoring/data.yml
 ---
+#include /services/include/beta-software-warning.tmpl
+
 
 # Version v0.3.0
 
@@ -28,16 +32,16 @@ excerpt: Discover the new features, updates, and known limitations in this relea
 ## New features
 
 * Grafana v5.3.4.
-* Support SSH auth when fetching from git repository.
+* Support `SSH auth` when fetching from Git repository.
 * Add default Grafana dashboards which can be automatically loaded.
-* Support Grafana server placement constraints.
-* Support fetching from a branch in a git repository.
+* Support Grafana server placement constraints
+* Support fetching from a branch in a Git repository
 
 ## Updates
 
-* Use local persistent volume for Grafana server.
-* Used Docker image for Grafana server.
-* Recursively clone git sub-modules from a git repository.
+* Use local persistent volume for Grafana server
+* Used Docker image for Grafana server
+* Recursively clone git sub-modules from a git repository
 
 # Version v0.1.1
 
@@ -63,8 +67,5 @@ Initial release.
 * Support strict mode DC/OS cluster.
 * Support launching Grafana server on public agents.
 
-## Limitations
-
-* No persistent storage for Grafana dashboard configurations.
-* No external storage for Prometheus data.
-* No backup for Prometheus data.
+# Known Limitations
+See Limitations [here](/services/dcos-monitoring/0.3.0/limitations/).
