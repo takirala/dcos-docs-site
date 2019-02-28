@@ -7,7 +7,13 @@ excerpt: Understanding DC/OS
 enterprise: false
 ---
 
-As a distributed system, DC/OS is itself a distributed system, a cluster manager, a container platform, and an operating system.
+DC/OS (the Distributed Cloud Operating System) is an open-source, distributed operating system based on the Apache Mesos distributed systems kernel. DC/OS manages multiple machines in the cloud or on-premises from a single interface; deploys containers, distributed services, and legacy applications into those machines; and provides networking, service discovery and resource management to keep the services running and communicating with each other.
+
+As a distributed system, DC/OS is itself 
+- a distributed system 
+- a cluster manager 
+- a container platform 
+- an operating system
 
 ## Distributed System
 
