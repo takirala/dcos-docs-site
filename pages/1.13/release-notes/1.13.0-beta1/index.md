@@ -2,7 +2,7 @@
 layout: layout.pug
 navigationTitle: Release notes for 1.13.0 (Beta)
 title: Release notes for 1.13.0 (Beta)
-menuWeight: 15
+menuWeight: -1
 beta: true
 excerpt: Release notes for DC/OS 1.13.0 (Beta)
 ---
