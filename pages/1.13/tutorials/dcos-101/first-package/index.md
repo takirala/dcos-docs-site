@@ -5,6 +5,9 @@ title: Install the first package
 excerpt: Illustrates how to install a sample application package (part 3)
 menuWeight: 2
 ---
+Now that you have a DC/OS cluster installed and running on master and agent nodes and the have installed the DC/OS command-line interface (CLI) to work with your cluster, you are ready to begin adding packages and applications to the cluster. 
+
+If that isn't the case, please follow the [first](/tutorials/dcos-101/cli/) part of this tutorial.
 
 
 # Before you begin
