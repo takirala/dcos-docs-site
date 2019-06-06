@@ -1,6 +1,6 @@
 ---
 layout: layout.pug
-navigationTitle:  Debugging applications on DC/OS
+navigationTitle: Debugging applications on DC/OS
 title: Debugging applications on DC/OS
 excerpt: Debugging application deployment issues in distributed systems
 menuWeight: 55
