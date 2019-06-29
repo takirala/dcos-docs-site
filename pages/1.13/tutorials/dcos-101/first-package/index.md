@@ -172,7 +172,7 @@ You can verify that the Redis service is currently running and reporting a Healt
     
     ```bash
     ID               MEM   CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD  
-/redis-tutorial  1024   1     1/1    1/1       ---      False      DOCKER   N/A  
+    /redis-tutorial  1024   1     1/1    1/1       ---      False      DOCKER   N/A  
     ```
 
 1. Check the Redis log file by running the following command:
@@ -181,14 +181,22 @@ You can verify that the Redis service is currently running and reporting a Healt
     dcos task log redis
     ``` 
  
-    This command displays the standard output (stdout) and standard error (stderr) logs for the Redis task. The log file output enables you to check whether the actual startup was successful. By default, the command displays the last 10 lines of logged activity. You can change the number of log lines displayed by specifying the `--lines=` argument.
+    This command displays the standard output (stdout) and standard error (stderr) logs for the Redis task. The log file output enables you to check whether the actual startup was successful. By default, the command displays the last 10 lines of logged activity. You can change the number of log lines displayed by specifying the `--lines=` argument. For example, if you run `dcos task log redis --lines=5`, you might see output similar to the following:
+
+    ```bash
+    1:M 27 Jun 18:17:31.449 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+    1:M 27 Jun 18:17:31.449 # Server initialized
+    1:M 27 Jun 18:17:31.449 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+    1:M 27 Jun 18:17:31.449 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+    1:M 27 Jun 18:17:31.449 * Ready to accept connections
+    ```
 
 # Test service operations  
 Now that you have installed the Redis package, deployed the service on the cluster, and verified that the service is healthy, you can complete this tutorial by using Redis to store a key-value pair manually using the `redis-cli` command.
 
 1. Open a terminal shell on a computer with network access to the cluster.
 
-1. Open a secure shell [SSH](/1.13/administering-clusters/sshcluster/) session on the cluster node where the Redis service is running.
+1. Open a secure shell ([SSH])(/1.13/administering-clusters/sshcluster/) session on the cluster node where the Redis service is running.
 
     There are several ways you can determine the cluster node address and Mesos task identifier for the Redis service running on that node. 
     
@@ -198,11 +206,13 @@ Now that you have installed the Redis package, deployed the service on the clust
     ssh <agent-node-ip> -l <authorized-user>
     ```
 
-    You can also use dcos task to look up the Mesos ID for the Redis service, then open a secure shell using a command similar to the following:
+    You can also use `dcos task` to look up the Mesos ID for the Redis service, then open a secure shell using a command similar to the following:
 
     ```bash
     dcos node ssh --master-proxy --mesos-id=dedbb786-feb7-47f2-ae69-27bf86ba53fb-S0
     ```
+
+    If you are prompted to confirm connecting to the host, type `yes`.
 
 1. List the Docker containers to get the `ContainerID` for the container running the Redis service by running the following command:
 
@@ -245,7 +255,7 @@ Now that you have installed the Redis package, deployed the service on the clust
 
     In the next tutorial, you will deploy a simple application that connects to the Redis service and retrieves the number of keys defined.
 
-1. Exit the `redis-cli` client and end the secure shell session.
+1. Exit the `redis-cli` client, close the Redis connection, and end the secure shell session.
 
 # Next steps
 You have successfully installed your first service from the package repository and verified it is running.
@@ -261,4 +271,4 @@ The Mesosphere [Catalog](/1.13/gui/catalog/) (or [Universe](https://github.com/m
 
 The package repository enables you to easily install certified or community-contributed services, such as Apache Spark or Apache Cassandra, in your cluster without having to locate, download, and configure independent packages manually. If your cluster runs on an isolated network without an internet connection, you can create and manage your own site-specific package repository.
 
-For information about creating your own package repository that includes your custom packages, see [Deploying a local Universe](1.13/administering-clusters/deploying-a-local-dcos-universe/) for details.
+For information about creating your own package repository that includes your custom packages, see [Deploying a local Universe](../../../administering-clusters/deploying-a-local-dcos-universe/) for details.

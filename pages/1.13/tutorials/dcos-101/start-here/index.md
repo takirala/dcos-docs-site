@@ -224,11 +224,11 @@ In a production environment, you would automate these steps to create as many pr
 
 1. Type your administrative user name and password, then click **Log in**.
 
-    ![Log in to the administrative console](/1.13/img/sample-login.png)
+    ![Log in to the administrative console](/1.13/img/tutorial-sample-login.png)
 
     If the connection is successful, the DC/OS dashboard is displayed.
 
-    ![DC/OS dashboard in the administrative console](/1.13/img/sample-dashboard.png)
+    ![DC/OS dashboard in the administrative console](/1.13/img/tutorial-sample-dashboard.png)
 
 Congratulations! You have successfully created your first DC/OS cluster. You can now start exploring what you can do using this cluster in subsequent tutorials.
 
@@ -249,9 +249,11 @@ There are several other methods you can use to install the DC/OS cluster. For ex
 - [Other Installation methods](/1.13/installing/evaluation/community-supported-methods/)
 
 ### More about cluster architecture and components
-For an overview of the DC/OS platform and the components that make up the architectural layers of the platform, see the [Architectural overview](latest/overview/architecture/components/).
+For an overview of the DC/OS platform and the components that make up the architectural layers of the platform, see the [Architectural overview](../../overview/architecture/components/).
 
-If you want to know more about the DC/OS architecture and key components, see the following topics: 
-- [Mesos](/overview/architecture/components/#apache-mesos) containers and orchestration.
-- [Marathon](/overview/architecture/components/#marathon) framework and application definitions.
-- [Metronome](/overview/architecture/components/#marathon) job management and scheduling.
+If you want to know more about the DC/OS architecture and key components, see the following topics:
+
+- [Platform ecosystem overview](../../../overview/architecture/components/)
+- [Cluster management and orchestration with Mesos](../../../overview/architecture/components/#cluster-management).
+- [Framework and application definitions with Marathon](../../../overview/architecture/components/#container-orchestration).
+- [Job management and scheduling with Metronome](../../../overview/architecture/components/#dcos-jobs).

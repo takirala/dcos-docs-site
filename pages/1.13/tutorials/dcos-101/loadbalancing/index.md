@@ -1,11 +1,12 @@
 ---
 layout: layout.pug
-navigationTitle: Load balancing
-title: Load balancing
+navigationTitle: Load balancing workload
+title: Load balancing workload
 excerpt: Demonstrates distributing workload for clients requesting access to a deployed application (part 10)
 menuWeight: 10
 ---
 Conceptually, a load balancer provides a network communication layer for distributing client requests to applications. Load balancers are particularly important in a clustered network environment because they determine which instance of an application should respond to internal or external service requests. With DC/OS clusters, you have several options for distributing service requests through a load balancer:
+
 - You can use named [virtual IP addresses](/1.13/networking/load-balancing-vips/) and the native distributed layer-4 load balancing service `dcos-l4lb` (previously known as Minuteman).
 
 - You can use the [Marathon-LB](/services/marathon-lb/) implementation of the [HAProxy] open-source load balancing service if all of your deployed applications use Marathon app definitions. 
@@ -25,6 +26,7 @@ Before starting this tutorial, you should verify the following:
 
 # Learning objective
 By completing this tutorial, you will learn:
+
 - How to scale your application to multiple instances.
 
 - How internal and external services choose which instance to use once the application has been scaled.
@@ -43,7 +45,9 @@ dcos marathon app update /dcos-101/app2 instances=2
 
 1. Navigate to the application repeatedly to see the request being served by different instances of app2.
 
-1. Check the Marathon-LB statistics by accessing the HAProxy stats endpoint using a URL similar to this: `http://<public-node>:9090/haproxy?stats`.
+1. Check the Marathon-LB statistics by accessing the HAProxy `stats` endpoint using a URL similar to this: `http://<public-node>:9090/haproxy?stats`.
+
+    ![View load balancing statistics for dcos-101_app2](../../../img/tutorial-haproxy-stats.png)
 
 # Load balancing with virtual IP addresses
 1. Open a terminal and use a secure shell (SSH) to connect to the leading master node by running the following command:
@@ -75,6 +79,6 @@ Consider these features and benefits when choosing the load balancing mechanism.
 
 - [Marathon-LB](/services/marathon-lb/) is a layer-7 load balancer that is mostly used for **external** or **North-South** requests coming into the cluster from outside of the firewall or through a separate hardware or public cloud load balancer.
 
-Its core functionality is based on the HAProxy load balancer with the added benefit of allowing you to define configuration override in Marathon app definitions. Marathon-LB also uses the Marathon event bus to update its configuration in real time. Because it is a layer-7 load balancer, it supports session-based features such as HTTP sticky sessions and zero-downtime deployments.
+    Its core functionality is based on the HAProxy load balancer with the added benefit of allowing you to define configuration override in Marathon app definitions. Marathon-LB also uses the Marathon event bus to update its configuration in real time. Because it is a layer-7 load balancer, it supports session-based features such as HTTP sticky sessions and zero-downtime deployments.
 
 - [Named virtual IP addresses](/1.13/networking/load-balancing-vips/) provide layer-4 load balancing for **internal** or **East-West** TCP traffic. Because virtual IP addresses are tightly integrated with the kernel, they provide a load balanced IP address which can be used from anywhere within the cluster.
