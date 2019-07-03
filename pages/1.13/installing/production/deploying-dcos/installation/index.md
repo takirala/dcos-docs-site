@@ -3,7 +3,7 @@ layout: layout.pug
 navigationTitle: Production Installation
 title: Production Installation
 menuWeight: 15
-excerpt: Installing production-ready DC/OS 
+excerpt: Installing production-ready DC/OS
 ---
 
 This page outlines how to install DC/OS for production. Using this method, you can package the DC/OS distribution and connect to every node manually to run the DC/OS installation commands. This installation method is recommended if you want to integrate with an existing system or if you do not have SSH access to your cluster.
@@ -53,15 +53,20 @@ Before installing DC/OS, your cluster must meet the software and hardware [requi
     mkdir -p genconf
     ```
 [enterprise]
-# <a name="license"></a>Store license file
+<a name="license"></a>
+
+# Store license file
 [/enterprise]
+
 1.  Create a [license file](/1.13/administering-clusters/licenses/) containing the license text received in email sent by your Authorized Support Contact and save as `genconf/license.txt`.
 
-# <a name="ip-detect-script"></a>Create an IP detection script
+<a name="ip-detect-script"></a>
+
+# Create an IP detection script
 
 In this step, an IP detection script is created. This script reports the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detection script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-<p class="message--note"><strong>NOTE: </strong>The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address should not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be <a href="/1.12/installing/production/uninstalling/">uninstalled</a>.</p>
+<p class="message--note"><strong>NOTE: </strong>The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address should not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be <a href="/1.13/installing/production/uninstalling/">uninstalled</a>.</p>
 
 <p class="message--note"><strong>NOTE: </strong>The script must return the same IP address as specified in the <code>config.yaml</code>. For example, if the private master IP is specified as <code>10.2.30.4</code> in the <code>config.yaml</code>, your script should return this same value when run on the master.</p>
 
@@ -146,6 +151,8 @@ BEGIN { ec = 1 }
     echo $INTERFACE_IP
 ```
 
+<a name="fault-domain"></a>
+
 [enterprise]
 # Create a fault domain detection script
 [/enterprise]
@@ -180,14 +187,14 @@ By default, DC/OS clusters have [fault domain awareness](/1.13/deploying-service
 
 # Create a configuration file
 
-In this step, you can create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files. 
+In this step, you can create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
 [Enterprise]
 ## Set up a super user password
 [/enterprise]
 In the following instructions, we assume that you are using ZooKeeper for shared storage.
 
-1.  From the bootstrap node, run this command to create a hashed password for superuser authentication, where `<superuser_password>` is the superuser password. 
+1.  From the bootstrap node, run this command to create a hashed password for superuser authentication, where `<superuser_password>` is the superuser password.
 
 2. Save the hashed password key for use in the `superuser_password_hash` parameter in your `config.yaml` file.
 
@@ -206,8 +213,8 @@ In the following instructions, we assume that you are using ZooKeeper for shared
     $6$rounds=656000$v55tdnlMGNoSEgYH$1JAznj58MR.Bft2wd05KviSUUfZe45nsYsjlEl84w34pp48A9U2GoKzlycm3g6MBmg4cQW9k7iY4tpZdkWy9t1
     ```
 
-## Create the configuration 
-1.  Create a configuration file and save as `genconf/config.yaml`. You can use this template to get started. 
+## Create the configuration
+1.  Create a configuration file and save as `genconf/config.yaml`. You can use this template to get started.
 
 The Enterprise template specifies three Mesos masters, static master discovery list, internal storage backend for Exhibitor, a custom proxy, security mode specified, and cloud specific DNS resolvers. [enterprise type="inline" size="small" /]
 
@@ -239,7 +246,7 @@ master_list:
 - <master-private-ip-3>
 resolvers:
 - 169.254.169.253
-# Choose your security mode: permissive or strict 
+# Choose your security mode: permissive or strict
 security: <security-mode>
 superuser_password_hash: <hashed-password> # Generated above
 superuser_username: <username> # This can be whatever you like
@@ -259,7 +266,7 @@ enable_ipv6: 'false'
 [oss]
 ## Open Source template
 [/oss]
-    
+
     bootstrap_url: http://<bootstrap_ip>:80
     cluster_name: <cluster-name>
     exhibitor_storage_backend: static
@@ -289,8 +296,8 @@ In this step, you will create a custom DC/OS build file on your bootstrap node a
 <p class="message--note"><strong>NOTE: </strong>Due to a cluster configuration issue with overlay networks, we recommend setting <code>enable_ipv6</code> to <code>false</code> in <code>config.yaml</code> when upgrading or configuring a new cluster. If you have already upgraded to DC/OS 1.12.x without configuring <code>enable_ipv6</code> or if <code>config.yaml</code> file is set to <code>true</code>, then do not add new nodes.</p>
 
 You can find additional information and a more detailed remediation procedure in our latest critical [product advisory](https://support.mesosphere.com/s/login/?startURL=%2Fs%2Farticle%2FCritical-Issue-with-Overlay-Networking&ec=302). [enterprise type="inline" size="small" /]
-<p class="message--important"><strong>IMPORTANT: </strong>Do not install DC/OS until you have these items working: <code>ip-detect script</code>, <code>DNS</code>, and <code>NTP</code> on all DC/OS nodes with time synchronized. See <a href="https://docs.mesosphere.com/1.12/installing/troubleshooting/">troubleshooting</a> for more information.</p>
-<p class="message--note"><strong>NOTE: </strong>If something goes wrong and you want to rerun your setup, use the cluster <a href="https://docs.mesosphere.com/1.12/installing/production/uninstalling/">uninstall</a> instructions.</p>
+<p class="message--important"><strong>IMPORTANT: </strong>Do not install DC/OS until you have these items working: <code>ip-detect script</code>, <code>DNS</code>, and <code>NTP</code> on all DC/OS nodes with time synchronized. See <a href="https://docs.mesosphere.com/1.13/installing/troubleshooting/">troubleshooting</a> for more information.</p>
+<p class="message--note"><strong>NOTE: </strong>If something goes wrong and you want to rerun your setup, use the cluster <a href="https://docs.mesosphere.com/1.13/installing/production/uninstalling/">uninstall</a> instructions.</p>
 
 **Prerequisites**
 
@@ -314,8 +321,8 @@ The term `dcos_generate_config file` refers to either a `dcos_generate_config.ee
 1.  From the bootstrap node, run the DC/OS installer shell script to generate a customized DC/OS build file. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
     You can view all of the automated command line installer options with:
-    * `dcos_generate_config.ee.sh --help`  flag [enterprise type="inline" size="small" /]  
-      OR 
+    * `dcos_generate_config.ee.sh --help`  flag [enterprise type="inline" size="small" /]
+      OR
     * `dcos_generate_config.sh --help` flag. [oss type="inline" size="small" /]
 
 
@@ -335,7 +342,7 @@ At this point your directory structure should resemble:
 
 [oss type="inline" size="small" /]
 
-    sudo bash dcos_generate_config.sh    
+    sudo bash dcos_generate_config.sh
 
 At this point your directory structure should resemble:
 
@@ -344,7 +351,7 @@ At this point your directory structure should resemble:
         ├── genconf
         │   ├── config.yaml
         │   ├── ip-detect
-    
+
    - For the install script to work, you must have created `genconf/config.yaml` and `genconf/ip-detect`.
 
    <a name="nginx-cmd"></a>
@@ -416,7 +423,7 @@ At this point your directory structure should resemble:
             sudo bash dcos_install.sh slave_public
             ```
 
-    __Note:__ If you encounter errors such as `Time is marked as bad`, `adjtimex`, or `Time not in sync` in journald, verify that Network Time Protocol (NTP) is enabled on all nodes. For more information, see the [system requirements](/1.13/installing/ent/custom/system-requirements/#port-and-protocol) documentation.
+    __Note:__ If you encounter errors such as `Time is marked as bad`, `adjtimex`, or `Time not in sync` in journald, verify that Network Time Protocol (NTP) is enabled on all nodes. For more information, see the [system requirements](/1.13/installing/production/system-requirements/ports/) documentation.
 
 5.  Monitor Exhibitor and wait for it to converge at `http://<master-ip>:8181/exhibitor/v1/ui/index.html`.
 
@@ -445,7 +452,7 @@ You are done! The UI dashboard will now be displayed.
 
 Figure 4. DC/OS UI dashboard
 
-<p class="message--note"><strong>NOTE: </strong>You can also use <a href="https://docs.mesosphere.com/1.12/installing/evaluation/mesosphere-supported-methods/">Universal Installer</a> to deploy DC/OS on AWS, Azure, or GCP in production.</p>
+<p class="message--note"><strong>NOTE: </strong>You can also use <a href="https://docs.mesosphere.com/1.13/installing/evaluation/mesosphere-supported-methods/">Universal Installer</a> to deploy DC/OS on AWS, Azure, or GCP in production.</p>
 
 ### Next Steps: Enterprise and Open Source users
 
