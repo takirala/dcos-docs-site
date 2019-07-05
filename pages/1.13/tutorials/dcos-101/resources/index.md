@@ -3,6 +3,8 @@ layout: layout.pug
 navigationTitle: Allocate and scale resources
 title: Allocate and scale resources
 excerpt: Provides strategies and examples for scaling resources allocated for deployed applications (part 9)
+render: mustache
+model: /data.yml
 menuWeight: 9
 ---
 To this point, you have seen how to create a cluster and how to deploy and test applications and services that run on the cluster. You’ve worked with single commands and apps that run in Docker and DC/OS UCR containers. With this tutorial, you will see some of the key benefits provider by container orchestration and perform a few common resource scaling tasks.

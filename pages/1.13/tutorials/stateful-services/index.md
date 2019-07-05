@@ -3,6 +3,8 @@ layout: layout.pug
 title: Running stateful services on DC/OS
 navigationTitle: Running stateful services on DC/OS
 menuWeight: 2
+render: mustache
+model: /data.yml
 excerpt: Running stateful services on DC/OS
 ---
 

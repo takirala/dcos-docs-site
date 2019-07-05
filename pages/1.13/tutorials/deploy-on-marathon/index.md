@@ -4,7 +4,8 @@ navigationTitle: Deploying Marathon apps with Jenkins
 title: Deploying Marathon apps with Jenkins
 menuWeight: 4
 excerpt: Deploying applications on Marathon using Jenkins for DC/OS
-
+render: mustache
+model: /data.yml
 enterprise: false
 ---
 

@@ -3,6 +3,8 @@ layout: layout.pug
 navigationTitle: Deploying a load-balanced data pipeline
 title: Deploying a load-balanced data pipeline
 menuWeight: 3
+render: mustache
+model: /data.yml
 excerpt: Building a complete load-balanced data pipeline on DC/OS
 ---
 

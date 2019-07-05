@@ -4,6 +4,8 @@ navigationTitle: Create and run custom apps
 title: Create and run custom apps
 menuWeight: 5
 excerpt: Illustrates how to create and deploy single command or an image using containers (part 5)
+render: mustache
+model: /data.yml
 enterprise: false
 ---
 In the previous tutorial, you deployed a sample application with a predefined app definition and Docker container file. This tutorial shows how to create and deploy sample applications that have not been predefined. 

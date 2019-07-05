@@ -4,6 +4,8 @@ navigationTitle:  Tutorials
 title: Tutorials
 menuWeight: 140
 excerpt: Demonstrates the first steps and key tasks for running DC/OS
+render: mustache
+model: /data.yml
 enterprise: false
 ---
 The tutorials in this section cover the following tasks:

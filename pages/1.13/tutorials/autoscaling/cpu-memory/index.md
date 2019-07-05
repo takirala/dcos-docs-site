@@ -1,10 +1,11 @@
 ---
 layout: layout.pug
-navigationTitle:  Autoscaling Marathon services using CPU and memory
-title: Tutorial - Autoscaling Marathon services using CPU and memory
+navigationTitle:  Autoscaling using CPU and memory
+title: Autoscaling using CPU and memory
 menuWeight: 0
-excerpt: Autoscaling Marathon services using CPU and memory
-
+excerpt: Illustrates how to use CPU and memory to automatically scale services
+render: mustache
+model: /data.yml
 enterprise: false
 ---
 

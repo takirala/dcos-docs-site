@@ -3,6 +3,8 @@ layout: layout.pug
 navigationTitle: Load balancing workload
 title: Load balancing workload
 excerpt: Demonstrates distributing workload for clients requesting access to a deployed application (part 10)
+render: mustache
+model: /data.yml
 menuWeight: 10
 ---
 Conceptually, a load balancer provides a network communication layer for distributing client requests to applications. Load balancers are particularly important in a clustered network environment because they determine which instance of an application should respond to internal or external service requests. With DC/OS clusters, you have several options for distributing service requests through a load balancer:

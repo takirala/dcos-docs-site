@@ -1,8 +1,10 @@
 ---
 layout: layout.pug
-title: Scenario 2
-navigationTitle: Scenario 2
-excerpt: Tutorial - Out of Memory
+title: Scenario - Out of memory
+navigationTitle: Scenario - Out of memory
+excerpt: Demonstrates troubleshooting out of memory issues
+render: mustache
+model: /data.yml
 menuWeight: 11
 ---
 

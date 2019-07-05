@@ -3,6 +3,8 @@ layout: layout.pug
 navigationTitle: Create a cluster
 title: Create a cluster
 menuWeight: 1
+render: mustache
+model: /data.yml
 excerpt: Let's start your DC/OS tour by creating a cluster (part 1)
 ---
 This tutorial demonstrates the basic steps for creating a small DC/OS cluster using the most common default configuration options and verifying access to the cluster. You must successfully complete the steps in this tutorial before you can perform any other administrative tasks or explore additional features.
@@ -252,7 +254,7 @@ For an overview of the DC/OS platform and the components that make up the archit
 
 If you want to know more about the DC/OS architecture and key components, see the following topics:
 
-- [Platform ecosystem overview](../../../overview/architecture/components/)
+- [Platform ecosystem overview](../../../overview/architecture/components/).
 - [Cluster management and orchestration with Mesos](../../../overview/architecture/components/#cluster-management).
 - [Framework and application definitions with Marathon](../../../overview/architecture/components/#container-orchestration).
 - [Job management and scheduling with Metronome](../../../overview/architecture/components/#dcos-jobs).

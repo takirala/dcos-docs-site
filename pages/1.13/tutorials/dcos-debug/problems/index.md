@@ -1,18 +1,16 @@
 ---
 layout: layout.pug
-title: Problems
-navigationTitle:  Problems
-excerpt: Tutorial - Troubleshooting issues on DC/OS deployments
+title: Common problems
+navigationTitle: Common problems
+excerpt: Describes common issues you might need to troubleshoot for DC/OS deployments
+render: mustache
+model: /data.yml
 menuWeight: 1
 ---
-
 <!-- I. Problems Section -->
-#include /include/tutorial-disclaimer.tmpl
-
 <a name="problems"></a>
 
-# Problems with Application Deployment
-
+# Problems with application deployment
 Some of the problems that may need troubleshooting on DC/OS include applications:
 
 - Not deploying at all

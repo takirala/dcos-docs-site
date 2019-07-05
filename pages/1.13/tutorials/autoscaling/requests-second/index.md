@@ -1,9 +1,11 @@
 ---
 layout: layout.pug
-navigationTitle:  Understanding Autoscaling
-title: Tutorial - Autoscaling using requests per second
+navigationTitle: Autoscaling using requests per second
+title: Autoscaling using requests per second
 menuWeight: 1
-excerpt: Setting up microscaling based on requests per second
+excerpt: Demonstrates how to use requests per second to automatically scale services
+render: mustache
+model: /data.yml
 enterprise: false
 ---
 

@@ -1,8 +1,10 @@
 ---
 layout: layout.pug
-title: Scenario 1
-navigationTitle: Scenario 1
-excerpt: Tutorial - Resource Allocation
+title: Scenario - Resource allocation
+navigationTitle: Scenario - Resource allocation
+excerpt: Demonstrates troubleshooting resource allocation issues
+render: mustache
+model: /data.yml
 menuWeight: 1
 ---
 #include /include/tutorial-disclaimer.tmpl

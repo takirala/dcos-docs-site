@@ -6,11 +6,17 @@ menuWeight: 11
 ---
 <!-- II. Tools Section -->
 
-#include /include/tutorial-disclaimer.tmpl
+We will first look at [some potential problems](/tutorials/dcos-debug/problems/) you might face when deploying an application on DC/OS. Next, we will look at the [standard set of tools](/tutorials/dcos-debug/tools/) for debugging. Then, after introducing [a general strategy for using those tools](/tutorials/dcos-debug/gen-strat/), we have two [concrete examples](/tutorials/dcos-debug/scenarios/) to illustrate how the strategy works in practice. We encourage you to first try debugging these challenges yourself, but we also provide detailed guidance for debugging them as well. There are even more scenarios like these in the [dcos-debugging github repository](https://github.com/dcos-labs/dcos-debugging/tree/master/1.10/). Also please feel free to contribute your own debugging scenarios to this repository.
 
+# Before you begin
+You should have a working knowledge of core DC/OS components to complete this tutorial. If needed, consult the other [tutorials](../../../tutorials/) to be sure you know how to:
+- [Create a cluster](../../start-here/)
+- [Install packages](../../first-package/)
+- [Deploy applications](../../first-app/)
+
+You should also be familiar with performing basic administrative tasks and using the DC/OS web-based administrative console and the DC/OS command-line interface (CLI).
 
 <a name="tools"></a>
-
 
 DC/OS comes with several tools relevant for application debugging:
 

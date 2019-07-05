@@ -1,8 +1,10 @@
 ---
 layout: layout.pug
-title: Scenario 3
-navigationTitle: Scenario 3
-excerpt: Tutorial - Docker Images
+title: Scenario - Docker Images
+navigationTitle: Scenario - Docker Images
+excerpt: Demonstrates troubleshooting issues with Docker images
+render: mustache
+model: /data.yml
 menuWeight: 21
 ---
 #include /include/tutorial-disclaimer.tmpl

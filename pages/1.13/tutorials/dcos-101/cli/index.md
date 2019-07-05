@@ -3,6 +3,8 @@ layout: layout.pug
 excerpt: Install the command-line interface to perform your day-to-day tasks (part 2)
 title: Install the command-line interface
 navigationTitle: Install the command-line interface
+render: mustache
+model: /data.yml
 menuWeight: 2
 ---
 The DC/OS command-line interface (CLI) provides a convenient way for you to perform your administrative tasks, retrieve information about components and operations, and monitor cluster status and activity. 

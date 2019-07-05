@@ -3,6 +3,8 @@ layout: layout.pug
 navigationTitle: Expose apps publicly
 title: Expose apps publicly
 excerpt: Exposes an application to make it available for access outside of the cluster (part 9)
+render: mustache
+model: /data.yml
 menuWeight: -1
 ---
 

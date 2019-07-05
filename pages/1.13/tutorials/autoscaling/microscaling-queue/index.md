@@ -1,8 +1,10 @@
 ---
 layout: layout.pug
-excerpt: Understanding microscaling
-title: Tutorial - Microscaling based on queue length
-navigationTitle: Microscaling
+title: Microscaling using queue length
+navigationTitle: Microscaling using queue length
+excerpt: Demonstrates microscaling based on a queue length performance target
+render: mustache
+model: /data.yml
 menuWeight: 2
 ---
 
