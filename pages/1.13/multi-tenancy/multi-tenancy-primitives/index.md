@@ -5,7 +5,7 @@ title: Multi-Tenancy Primitives
 menuWeight: 90
 excerpt: Reserving resources using multi-tenancy primitives
 render: mustache
-model: /1.14/data.yml
+# model: /1.14/data.yml
 ---
 Resources in DC/OS can be reserved and prioritized using a combination of roles, reservations, quotas, and weights. These features are provided by Apache Mesos, at the core of DC/OS and are referred to as `Primitives`, as they are only accessible via the API and have not yet been integrated into the DC/OS UI or CLI. A user requires good monitoring in place of available/used resources when working with quotas, reservations, and weights.
 
