@@ -10,7 +10,7 @@ enterprise: true
 You can use the Edge-LB command-line interface (CLI) commands and subcommands to configure and manage your Edge-LB load balancer instances from a shell terminal or programmatically.
 
 # Adding the Edge-LB command-line interface package
-In most cases, you add the Edge-LB command-line interface (CLI) as part of your initial installation of the Edge-LB API server and Edge-LB pool packages when you are preparing to deploy Edge-LB load balancing. However, one of the key benefits of running containerized services is that they can be placed anywhere in the cluster. 
+In most cases, you add the Edge-LB command-line interface (CLI) as part of your initial installation of the Edge-LB API server and Edge-LB pool packages when you are preparing to deploy Edge-LB load balancing. However, one of the key benefits of running containerized services is that they can be placed anywhere in the cluster.
 
 Because you can deploy packages anywhere on the cluster, you might find that you need to install the Edge-LB command-line interface (CLI) on additional computers for other administrators. To simplify access to the Edge-LB command-line programs, you can install the CLI as a separate package by running the following command:
 
@@ -57,7 +57,12 @@ dcos edgelb cleanup
 
 | Name, shorthand | Description |
 |---------|-------------|
-| `--help, h`   | Display usage. |
+| `--yes` | Remove Elastic Load Balancers without prompting for confirmation. |
+| `--apiserver-app-id=APISERVER-APP-ID` | Specify the Marathon application ID of the Edge-LB API server associated with the AWS Elastic Load Balancer. |
+| `--pool-name=POOL-NAME` | Edge-LB pool name. You can specify multiple pool names separated by commas (,). |
+| `--elb-name=ELB-NAME` | Specify the Elastic Load Balancer name. |
+| `--force` | Force the removal of the Elastic Load Balancers. |
+| `--help, h`   | Display usage information. |
 | `--verbose`   | Enable additional logging of requests and responses. |
 
 ### Permissions
@@ -72,8 +77,27 @@ dcos:adminrouter:service:edgelb full
 ### Example
 After uninstalling Edge-LB packages, you can use the following command to remove remnants of the Elastic load balancer deployed on AWS instances:
 
-`dcos edgelb cleanup`
+```bash
+dcos edgelb cleanup --yes
+```
 
+The command returns information similar to the following:
+
+```
+cluster_id :3dcbca3e-f810-489b-a36e-f538fcb9d562
+  ELB NAME                          CLUSTER ID  APISERVER APP ID  POOL NAME  ORIGINAL ELB NAME
+  dcos-lb-GxuaBjPhx-Q8ayl-LwW1-HJG
+1 ELBs will be deleted
+Begin to delete ELB dcos-lb-GxuaBjPhx-Q8ayl-LwW1-HJG
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:56.432257+08:00] deleting the listener                         arn=0xc0000a0bc8 src="awslb/awslb.go:1296"
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:56.841851+08:00] deleted the listener                          arn=0xc0000a0bc8 src="awslb/awslb.go:1321"
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:56.841956+08:00] deleting the target group                     arn="arn:aws:elasticloadbalancing:us-east-1:273854932432:targetgroup/test-hqch2/3e918f45757c33c0" src="awslb/awslb.go:1265"
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:57.152635+08:00] deleted the target group                      arn="arn:aws:elasticloadbalancing:us-east-1:273854932432:targetgroup/test-hqch2/3e918f45757c33c0" src="awslb/awslb.go:1288"
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:57.455911+08:00] deleting the elastic load balancer            arn="arn:aws:elasticloadbalancing:us-east-1:273854932432:loadbalancer/net/dcos-lb-GxuaBjPhx-Q8ayl-LwW1-HJG/d69fa56632d59f2f" src="awslb/awslb.go:1237"
+[dcos-edgelb:48744] INFO[2019-04-15T22:53:57.967195+08:00] deleted the elastic load balancer             arn="arn:aws:elasticloadbalancing:us-east-1:273854932432:loadbalancer/net/dcos-lb-GxuaBjPhx-Q8ayl-LwW1-HJG/d69fa56632d59f2f" src="awslb/awslb.go:1258"
+Deleted ELB dcos-lb-GxuaBjPhx-Q8ayl-LwW1-HJG
+1/1 ELBs are deleted
+```
 For additional information about deleting Edge-LB pools and uninstalling Edge-LB packages, see [Uninstalling Edge-LB](../../how-to-tasks/uninstalling/).
 
 # dcos edgelb create
@@ -149,29 +173,29 @@ To delete an existing Edge-LB pool named `aqua01` and uninstall the deployed loa
 # dcos edgelb diagnostic
 Use the `dcos edgelb diagnostic` command to collect diagnostic information for Edge-LB pools and package the diagnostics in a support bundle for troubleshooting and analysis.
 
-# Usage
+### Usage
 
 ```bash
 dcos edgelb diagnostic [<flags>]
 ```
 
-# Options
+### Options
 
 | Name, shorthand | Description |
-|---------|-------------|
+|-----------------|-------------|
 | `--bundles-dir=BUNDLES-DIR` | Specify the folder under which the diagnostic bundle will be located. You can specify the directory using an absolute or relative path. By default, the current directory is used. |
 | `--help, h`   | Display usage information. |
 | `--pool-names=POOL-NAMES` | List pools, separated by commas (,), for which diagnostics data should be collected. For example, pool_name1,pool_name2. By default, all pools will be included. |
 | `--verbose`   | Enable additional logging of requests and responses. |
 
-# Permissions
+### Permissions
 To create a diagnostic bundle for Edge-LB pools, the Edge-LB service account or user account must have the following permission for a specified pool:
 
 <code>
 dcos:adminrouter:service:edgelb:/v2/pools full
 </code>
 
-# Examples
+### Examples
 To collect diagnostic bundles for all Edge-LB pools, run the following command:
 
 ```bash
@@ -181,10 +205,10 @@ dcos edgelb diagnostic
 To collect diagnostic bundles for specific Edge-LB pools, include the pool names in a command similar to the following:
 
 ```bash
-dcos edgelb diagnostic --pool-names=sf-edgelb, roma-edge-lb, hk-edgelb
+dcos edgelb diagnostic --pool-names=sf-edgelb,roma-edge-lb,hk-edgelb
 ```
 
-This command generates diagnostic bundle with the logs files from the `sf-edgelb`, `roma-edgelb`, and `hk-edgelb` pools.
+This command generates diagnostic bundle with the logs files from the `sf-edgelb`, `roma-edgelb`, and `hk-edgelb` pools pools and saves it in the current working directory.
 
 To collect diagnostic bundles for a specific Edge-LB pool and place the file in a specific directory instead of the current working directory, run a command similar to the following:
 
@@ -304,7 +328,7 @@ To test the connection to the `sanfrancisco05` Edge-LB pool by sending a `ping` 
 # dcos edgelb show
 Use this command to show the pool definition for a given pool name. If you don't specify a pool name, the command returns information for all pool configurations.
 
-You can also use this command to convert YAML files to their equivalent JSON format. If you have configuration files previously written using YAML, you should use this command to convert the configuration settings to their equivalent JSON format. 
+You can also use this command to convert YAML files to their equivalent JSON format. If you have configuration files previously written using YAML, you should use this command to convert the configuration settings to their equivalent JSON format.
 
 ### Usage
 
@@ -331,7 +355,7 @@ To convert a YAML configuration file to JSON and output the results to standard 
 `dcos edgelb show --convert-to-json=/path/to/yaml`
 
 # dcos edgelb status
-Use this command to return a list of the load balancer task information associated with a pool. For example, you can run this command to return the agent IP address and task ID for a specified Edge-LB pool. 
+Use this command to return a list of the load balancer task information associated with a pool. For example, you can run this command to return the agent IP address and task ID for a specified Edge-LB pool.
 
 ### Usage
 
